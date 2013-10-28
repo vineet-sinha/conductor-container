@@ -166,7 +166,10 @@ module.exports = function(grunt) {
                      'copy:javascriptToTmp',
                      'transpile',
                      'jshint',
-                     'concat_sourcemap'
+                     'concat_sourcemap',
+                     'copy:assemble',
+                     'concat:conductor',
+                     'jsframe'
                      ]));
 
   // Styles
@@ -199,6 +202,13 @@ module.exports = function(grunt) {
     });
   });
 
+  grunt.registerTask("jsframe", function(){
+    var fs = require('fs'),
+        jsf = require('jsframe'),
+        out = fs.openSync('tmp/public/vendor/conductor.js.html', 'w');
+
+    jsf.process('tmp/conductor.js', out);
+  });
 
   grunt.initConfig(config);
 

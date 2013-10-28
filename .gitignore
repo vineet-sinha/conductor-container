@@ -6,9 +6,13 @@
 
 # dependencies
 /node_modules
-/vendor/*
-!/vendor/almond.js
-!/vendor/resolver.js
+
+# we get some dependencies automatically (we can't get almond, resolver, and conductor)
+/vendor/ember
+/vendor/handlebars
+/vendor/qunit
+/vendor/ember-data-shim
+/vendor/jquery
 
 # misc
 /.sass-cache
