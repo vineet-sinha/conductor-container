@@ -23,6 +23,10 @@ module.exports = {
     files: [indexHTML],
     tasks: ['lock', 'buildIndexHTML:debug', 'unlock']
   },
+  cards: {
+    files: ['cards/**/*'],
+    tasks: ['lock', 'buildScripts', 'unlock']
+  },
   other: {
     files: [other, '!'+scripts, '!'+templates, '!'+styles, '!'+indexHTML],
     tasks: ['lock', 'build:debug', 'unlock']
