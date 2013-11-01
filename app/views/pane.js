@@ -11,8 +11,7 @@ var PaneView = Ember.View.extend({
 
     card.appendTo(this.get('element')).
       then(function(card) {
-        //card.render();
-
+        card.render();
         return card;
       }).fail(Ember.RSVP.rethrow);
   }
