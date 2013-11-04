@@ -9,6 +9,12 @@ Conductor.card({
 
   render: function() {
     //debugger;
-    $('body').text('hello world!');
+    var $body = $('body');
+    $body.text('hello world!');
+
+    this.consumers.xhr.request('get', '/data.json').then(function(responseBody){
+      var responseObj = JSON.parse(responseBody);
+      $body.append($('<div/>').text(responseObj.name));
+    });
   }
 });
