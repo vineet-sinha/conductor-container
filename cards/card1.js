@@ -10,11 +10,23 @@ Conductor.card({
   render: function() {
     //debugger;
     var $body = $('body');
-    $body.text('hello world!');
 
-    this.consumers.xhr.request('get', '/data.json').then(function(responseBody){
+    if (this.data && this.data.person && this.data.person.name) {
+      $body.append($('<div/>').text('render: ' + this.data.person.name));
+    }
+    //$body.text('hello world!');
+
+    this.consumers.xhr.request('get', '/data.json').then(function(responseBody) {
       var responseObj = JSON.parse(responseBody);
-      $body.append($('<div/>').text(responseObj.name));
+      $body.append($('<div/>').text('xhr: ' + responseObj.name));
     });
+  },
+
+  didUpdateData: function(name, data) {
+    if (name === '*' && data.person ) {
+      var $body = $('body');
+      $body.append($('<div/>').text('updateData: ' + data.person.name || 'none'));
+    }
   }
+
 });
