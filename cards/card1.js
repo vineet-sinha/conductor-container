@@ -2,6 +2,15 @@ Conductor.require('/vendor/jquery/jquery.js');
 Conductor.requireCSS('/cards/card1.css');
 
 Conductor.card({
+
+  metadata : {
+    cardInfo : function(){
+      return {
+        type: 'listViewer'
+      };
+    }
+  },
+
   activate: function() {
     //debugger;
     //window.alert("Hello!");
