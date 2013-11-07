@@ -11,6 +11,10 @@ Conductor.card({
     }
   },
 
+  consumers: {
+    hello: Conductor.Oasis.Consumer
+  },
+
   activate: function() {
     //debugger;
     //window.alert("Hello!");
@@ -22,6 +26,10 @@ Conductor.card({
   render: function() {
     //debugger;
     var $container = this.getContainerDiv();
+
+    this.consumers.hello.request('hi').then(function(response) {
+      $container.append($('<div/>').text('svc: ' + response));
+    });
 
     if (this.data && this.data.person && this.data.person.name) {
       $container.append($('<div/>').text('render: ' + this.data.person.name));

@@ -5,9 +5,7 @@ var PaneView = Ember.View.extend({
   didInsertElement: function() {
     console.log('card url: ' + this.get('controller.url'));
 
-    var conductor = new Conductor({
-      conductorURL: '/vendor/conductor.js.html'
-    });
+    var conductor = this.get('container').lookup('conductor:main');
 
     var url = this.get('controller.url');
     var id = this.get('controller.id');
@@ -23,7 +21,7 @@ var PaneView = Ember.View.extend({
       }
     });
 
-    var card = conductor.load(url, id);
+    var card = conductor.load(url, id, {capabilities: ['hello']});
 
     card.appendTo(this.get('element')).
       then(function(card) {
