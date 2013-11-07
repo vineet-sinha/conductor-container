@@ -12,7 +12,12 @@ Conductor.card({
   },
 
   consumers: {
-    hello: Conductor.Oasis.Consumer
+    hello: Conductor.Oasis.Consumer,
+    person: Conductor.Oasis.Consumer.extend({
+      byEmail: function(email) {
+        return this.request('findByEmail', email);
+      }
+    })
   },
 
   activate: function() {
@@ -29,6 +34,10 @@ Conductor.card({
 
     this.consumers.hello.request('hi').then(function(response) {
       $container.append($('<div/>').text('svc: ' + response));
+    });
+
+    this.consumers.person.byEmail('hassan.abdelrahman@mhelabs.com').then(function(response) {
+      $container.append($('<div/>').text('findByEmail-Svc: ' + response.firstName + ' ' + response.lastName));
     });
 
     if (this.data && this.data.person && this.data.person.name) {
