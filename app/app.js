@@ -1,5 +1,6 @@
 import Resolver from 'resolver';
 import registerComponents from 'appkit/utils/register_components';
+import Conductor from 'conductor';
 import HelloService from 'appkit/services/hello';
 
 var App = Ember.Application.extend({
